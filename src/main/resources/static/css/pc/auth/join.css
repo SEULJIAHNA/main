@@ -1,0 +1,96 @@
+/* cdn import */
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+
+body {
+    min-height : 100vh;
+}
+
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-form {
+    max-width: 680px;
+
+    margin-top: 80px;
+    padding: 32px;
+
+    background: #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+
+    display : flex;
+    flex-direction : column;
+    align-items: center;
+
+}
+
+.title {
+    font-size : 1.2rem;
+    font-family : sans-serif;
+    margin-top : 0;
+
+    font-family: 'Apple SD Gothic Neo','Malgun Gothic',arial,sans-serif;
+}
+
+img {
+    width : 10rem;
+}
+
+button {
+    border : none;
+    background : none;
+    background : none;
+}
+
+/* 우편번호 버튼 스타일 */
+.post-button {
+    background : var(--button-background-color);
+    color : #fff;
+}
+
+.post-button:hover {
+      background: linear-gradient(to left, #131313 0%, #ff0080 100%);
+}
+
+/*
+*  회원가입 form css
+*/
+
+.input-container[data-error] .input{
+    border-color : #c92432;
+    color : #c92432;
+    background : #fffaffa;
+}
+
+.input-container[data-error]::after {
+    content : attr(data-error);
+    font-size : 0.85rem;
+    color : #c92432;
+    display : block;
+    margin : 10px 0;
+
+}
+
+/*데이터 유효성 검사 성공 시*/
+
+.input-container[data-success] .input{
+    border-color : #33ff00;
+    color : #33ff00;
+}
+
+.input-container[data-success]::after {
+    content : attr(data-success);
+    font-sisigze : 0.85rem;
+    color : #33ff00;
+    display : block;
+    margin : 10px 0;
+
+}
+

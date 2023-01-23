@@ -1,0 +1,414 @@
+/* cdn import */
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+
+
+:root {
+    --nav-text-color : rgb(33, 36, 42);
+    --button-background-color : rgb(19, 21, 24);
+}
+
+/* html tag css */
+
+html , body {
+    -webkit-text-size-adjust : 80%;  /* 크롬, 사파리, 오페라 신버전 */
+    -ms-text-size-adjust : 80%;  /* IE */
+    -moz-text-size-adjust : 80%;  /* 파이어폭스 */
+    -o-text-size-adjust : 80%;  /* 오페라 구버전 */
+}
+
+body {
+    margin : 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width : 90%;
+    max-width: none;
+    padding : 0;
+}
+
+/*
+    공용 css 모음
+*/
+.lcCen {
+   position: relative;
+   display: flex;
+   -webkit-box-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   justify-content: center;
+   padding: 0px;
+}
+
+
+.mb-15 {
+    margin-bottom : 15px;
+}
+
+mt-15 {
+    margin-top : 15px;
+}
+
+ml-15 {
+    margin-left : 15px;
+}
+
+mr-15 {
+    margin-right : 15px;
+}
+
+pd-824 {
+    padding : 8px 24px;
+}
+
+pd-812 {
+    padding : 8px 12px;
+}
+
+.pl-0 {
+    padding-left : 0;
+}
+
+.pr-0 {
+    padding-right : 0;
+}
+
+.pb-0 {
+    padding-bottom : 0;
+}
+
+.pt-0 {
+    padding-top : 0;
+}
+
+.visible_from_600px {
+    display : none;
+}
+
+/* 부모 태그와 동적으로 같은 크기(width) 하는 css (same parents width */
+.aCspw {
+    width : inherit;
+}
+
+.aCsph {
+    height : inherit;
+}
+
+.pos-relative {
+    position : relative;
+}
+
+.non-list-style {
+    list-style : none;
+}
+
+/*
+    body header css
+*/
+
+/** main-wrapper **/
+
+#global_navbar {
+    position : fixed;
+    top : 0;
+    /*width : 100% */
+    left : 0;
+    right : 0;
+    z-index : 99999;
+    background : #ffffff;
+}
+
+
+.main-wrapper {
+    margin-top : 15px;
+    position : relative;
+}
+
+#global-navbar .global-navbar-bottom-line {
+    border: 2px solid #ffffff;
+    background: linear-gradient(180deg, #FFFFFF 0%, #C4C4C4 1150%), linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75));
+    box-shadow: 0px 2px 2px 0px #c6c6c6b2;
+
+    width: 100vw;
+}
+
+.main-logo > * {
+   width : 40px;
+   height : 40px;
+   border-radius : 50%;
+   margin-right : 10px;
+
+}
+
+
+login-join-button-container {
+    display : flex;
+    justify-content : flex-end;
+    align-items : center;
+}
+
+@media screen and (max-width : 1000px) {
+
+    .outer_logo_text {
+        display : none;
+    }
+
+    .outer_logo_text:after {
+        display : block;
+        content : "SYP!";
+    }
+
+    .display_center {
+        display : flex;
+        align-items : center;
+    }
+}
+
+@media screen and (max-width : 768px) {
+    .outer_logo_text  {
+        display : none;
+
+    }
+}
+
+.login-join-button-container {
+    display : flex;
+    justify-content : flex-end;
+}
+
+.login-join-button-container .login-join-button {
+    border: 1px solid;
+    border-radius: 22px;
+    background: var(--button-background-color);
+    width: 5.5rem;
+    height: 2.2rem;
+    font-size: 12px;
+    color : #ffffff;
+    font-weight: bold;
+}
+.login-join-button-container .login-join-button > * {
+    color : #ffffff;
+}
+
+
+.main-wrapper .searchBox{
+   border : 1px solid;
+   border-radius : 22px;
+   display : flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   align-items : center;
+   padding : 8px 12px;
+}
+
+
+#search-form {
+    width : 100%;
+    height : 100%;
+    display : flex;
+   align-items : center;
+
+}
+
+#search-form .search-icon {
+
+}
+
+#search-keyword {
+   margin : 0px 10px;
+   flex : 1;
+   height : 100%;
+   border : none;
+}
+
+
+#search-btn {
+    background-color : transparent;
+    border : none;
+}
+
+.main-wrapper .header-symbol-link {
+    text-decoration : none;
+    color : var(--nav-text-color);
+    font-weight : bold;
+}
+
+
+/* nav-bar wrapper */
+.nav-bar {
+   display : flex;
+   align-items : center;
+}
+
+.nav-bar:first-child {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.nav-bar:nth-child(2) {
+    display : flex;
+    align-items : center;
+}
+
+.navbar__menu {
+    display : flex;
+    list-style : none;
+    padding-left : 0;
+}
+
+.navbar__toggleBtn {
+    position : absolute;
+    left : 88vw;
+    color : var(--button-background-color);
+    font-size : 24px;
+    display : none;
+    display : flex;
+    justify-content : center;
+}
+
+@media screen (min-width : 576px) and (max-width : 599px) {
+    .searchBox {
+        flex : 0 0 auto;
+        width : 66.66666667%;
+    }
+}
+
+.navbar__menu li {
+    padding : 8px 12px;
+}
+
+
+text-decoration: none;
+    color: var(--nav-text-color);
+    margin: 2em;
+    font-size: 1em;
+
+#horizontal-underline {
+    position: absolute;
+    left:0;
+    height: 4px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.5s;
+    background-color: pink;
+    top:0;
+}
+
+#global-navbar .nav-bottom-line {
+    border : 2px solid #ffffff;
+    background: linear-gradient(180deg, #FFFFFF 0%, #C4C4C4 1150%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75));
+    box-shadow: 0px 2px 2px 0px #C6C6C6B2;
+
+    width : 100%;
+
+}
+
+@media screen and (max-width : 600px) {
+    .nav-bar {
+        flex-direction : column;
+        align-items : center;
+    }
+
+    .navbar__menu {
+        display : none;
+        flex-direction : column;
+        align-items : center;
+        padding : 9px 24px;
+    }
+
+    .navbar__menu.active {
+        display : flex;
+    }
+
+
+    .navbar_menu li {
+        width : 100%;
+        text-align : center;
+    }
+
+    .navbar_item > a {
+        color : var(--nav-text-color);
+    }
+
+    .row > * {
+        padding-left : 0px;
+    }
+
+    .visible_from_600px {
+        display : block;
+    }
+
+    .login-join-button-container {
+        display : none;
+    }
+
+     .navbar__toggleBtn {
+        display : block;
+    }
+}
+
+
+/*
+* ########## main contents wrapper fragments css collection
+*
+*/
+
+#main_content {
+    margin-right : 12vw;
+    margin-left : 12vw;
+
+}
+
+@media screen and (min-width: 601px) {
+    #main_content {
+        padding-top : 151px;
+    }
+}
+
+@media screen and (max-width : 600px) {
+    #main_content {
+        padding-top : 95px;
+        margin-right : 0px;
+        margin-left : 0px;
+    }
+}
+
+
+.main-page {
+
+}
+
+.page {
+    min-height : calc(100vh - 64px - 520px);
+}
+
+.main_content_wrapper {
+    margin-left : auto;
+    margin-right : auto;
+}
+
+
+/*
+*  ######### main footer style  ############
+*/
+
+#footer {
+    position: absolute;
+    width : 100%;
+    height: 220px;
+    left: 0px;
+    top: 1580px;
+
+    background: #F0F1F4;
+}
+
+/* button common css */
+.non-button-effect {
+    border : 0;
+    outline : 0;
+}

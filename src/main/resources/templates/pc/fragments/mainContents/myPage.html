@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:fragment = "myPage">
+    <div  class = "myPage_main_wrapper">
+<!--        <div id ="myPage" class = "myPage_main_wrapper">-->
+        <div class = "profile_wrapper">
+
+            <div class = "background_image_container">
+                <th:block th:if="${#strings.isEmpty(principal.getUserBackgroundImageName)}">
+                    <img th:src="@{/images/USER_BACKGROUND_PROFILE_IMAGE/defaultBDProfileImg.jpg}" alt="background profile image">
+                </th:block>
+
+                <th:block th:unless="${#strings.isEmpty(principal.getUserBackgroundImageName)}">
+                    <img th:src="@{/images/USER_BACKGROUND_PROFILE_IMAGE/} +${principal.getUserBackgroundImageName} " alt="background profile image">
+                </th:block>
+
+
+                <div class = "user-background-image-upload-button">
+                    <button class = "non-button-effect" ></button>
+                </div>
+            </div>
+
+            <div class = "user_profile_container">
+                <div class = "profile_image_wrapper">
+                    <div class = "profile_image">
+                        <button type = "button"  class = "user_profile_image_button" data-bs-toggle="modal" data-bs-target="#imageUploadModal">
+                            <th:block th:if="${#strings.isEmpty(principal.getUserProfileImageName)}">
+                                <img th:src="@{/images/USER_PROFILE_IMAGE/defaultProfileImage.jpeg}" class = "user_profile_image" alt="profile image">
+                            </th:block>
+
+                            <th:block th:unless="${#strings.isEmpty(principal.getUserProfileImageName)}">
+                                <img th:src="@{/images/USER_PROFILE_IMAGE/} + ${principal.getUserProfileImageName}" class = "user_profile_image" alt="profile image">
+                            </th:block>
+
+                            <img class = "hover_image" src="/images/photo.png" alt="">
+                        </button>
+                    </div>
+
+                </div>
+
+                    <div class = "user_information_container">
+                        <div class ="user_detail">
+                            <p class = "user_nickname" th:text  ="${#authentication.principal.getNickname}">user nickname</p>
+                            <p class = "user_country"><i class="fa-sharp fa-solid fa-location-dot"></i>대한민국</p>
+                        </div>
+
+                        <div class = "user_activity_history">
+                            <div class = "activity_list">
+                                <ul class = "non-list-style">
+                                    <li class = "list_item">
+                                        <div class = "activity">
+                                            <p class = "activity_name">활동</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+                                    <li class = "list_item">
+                                        <div class = "like">
+                                            <p class = "activity_name">좋아요</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+
+                                    <li class = "list_item">
+                                        <div class = "style">
+                                            <p class = "activity_name">룩북</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+
+                                    <li class = "list_item">
+                                        <div class = "board">
+                                            <p class = "activity_name">게시글</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+
+                                    <li class = "list_item">
+                                        <div class = "follower">
+                                            <p class = "activity_name">팔로워</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+                                    <li class = "list_item">
+                                        <div class = "following">
+                                            <p class = "activity_name">팔로잉</p>
+                                            <p class = "count">34</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                   </div>
+            </div>
+
+        </div>
+        </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="imageUploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="ㅡbutton" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id = "filePhoto" type="file" name = "filePhoto" >
+
+                    <!-- image preview container -->
+                    <div class = "imagePreviewContainer">
+                        <img id = "imagePreview" src="" alt="" >
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id = "imageUploadButton" type="button" class="btn btn-primary" data-imageType = "USER_PROFILE_IMAGE" disabled>Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    <script language="javascript" src="/js/pc/mainContents/myPage.js" type = "text/javascript"></script>
+    <script language = "javascript" src ="/js/pc/common/imageCrop.js" type = "text/javascript"></script>
+
+    <!-- cropper js cdn  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.css" integrity="sha512-C4k/QrN4udgZnXStNFS5osxdhVECWyhMsK1pnlk+LkC7yJGCqoYxW4mH3/ZXLweODyzolwdWSqmmadudSHMRLA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</th:block>
+
+</html>

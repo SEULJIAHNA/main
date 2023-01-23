@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:replace = "pc/fragments/header :: html-head"></th:block>
+
+</head>
+
+<section id = "main_content"  th:fragment = "mainContentWrapper(mainContent)">
+    <div class = "main_content_wrapper main-page page">
+
+        <th:block th:if = "${mainContent == 'myPage'}">
+            <th:block th:replace = "pc/fragments/mainContents/myPage :: myPage"></th:block>
+        </th:block>
+
+        <th:block th:if = "${mainContent == 'board'}">
+            <th:block th:replace = "pc/fragments/mainContents/board :: board"></th:block>
+        </th:block>
+
+        <th:block th:if = "${mainContent == 'form'}">
+            <th:block th:replace = "pc/fragments/mainContents/form :: form"></th:block>
+        </th:block>
+
+        <th:block th:if = "${mainContent == 'mainPage'}">
+            <th:block th:replace = "pc/fragments/mainContents/mainPage :: mainPage"></th:block>
+        </th:block>
+    </div>
+
+    <script src="/node_modules/jquery-cropper/dist/jquery-cropper.js" ></script>
+
+</section>
+
+</html>

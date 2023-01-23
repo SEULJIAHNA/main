@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <th:block  th:replace="pc/fragments/header :: html-head"></th:block>
+    <meta charset="UTF-8">
+    <meta
+        name = "viewport"
+        content="width=device-width , initial-scale=1.0"
+        user-scaleable = "yes"
+    >
+    <title>Title</title>
+</head>
+
+<body>
+    <!-- main header fragments-->
+    <th:block  th:replace="pc/fragments/bodyHeader :: header"></th:block>
+    <th:block th:replace = "pc/fragments/mainContent :: mainContentWrapper('mainPage')"></th:block>
+    <th:block th:replace="pc/fragments/footer :: footer"></th:block>
+</body>

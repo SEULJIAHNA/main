@@ -1,0 +1,76 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'shareYourFashion'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.projectlombok:lombok:1.18.18'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	// apache commons library 사용
+	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+
+	//P6spy(sql binding value 확인)
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
+
+	// mysql 의존성 추가
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	// junit 4
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation("org.junit.vintage:junit-vintage-engine") {
+		exclude group: "org.hamcrest", module: "hamcrest-core"
+	}
+
+	// validate DTO , Parameter ...
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// build 시 npm Install 시작
+//node {
+//	version = '16.9.1'
+//	download = true
+//	nodeModulesDir = file("${projectDir}/src/main/resources/static")
+//}
+
+task copyFrontLib(type: Copy) {
+	from "${projectDir}/src/main/resources/static"
+	into "${projectDir}/build/resources/main/static/."
+}
+
+//copyFrontLib.dependsOn npmInstall
+compileJava.dependsOn copyFrontLib

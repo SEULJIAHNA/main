@@ -1,0 +1,225 @@
+/*
+*  ####### my page css #######
+*
+*/
+
+
+/* user profile content wrapper*/
+
+
+.myPage_main_wrapper {
+    width : 100%;
+}
+
+
+
+.profile_wrapper {
+     width : 100%;
+    height : 30vh;
+    display  : flex;
+    position : relative;
+    min-height : 200px;
+
+}
+
+
+.profile_wrapper .background_image_container {
+    width : 100%;
+    height : 100%;
+    margin : 0;
+    padding : 0;
+
+    position : absolute;
+    z-index : 2;
+}
+
+.background_image_container > img {
+    display:block;
+    width:100%;
+    height : 100%;
+}
+
+
+.profile-wrapper .profile-image-container {
+    display : flex;
+    flex-direction : column;
+    align-content : center;
+    width : 30%;
+    height : 100%;
+}
+
+
+.profile_wrapper {
+    position : relative;
+}
+
+.profile-wrapper .profile_image {
+    margin-bottom : auto;
+    position : relative;
+}
+
+
+.user_profile_container {
+    position : absolute;
+    z-index : 3;
+    width : 100%;
+    height : 100%;
+
+    padding-left : 3.3vw;
+    padding-top  : 3.6vh;
+
+    display : flex;
+}
+
+.user_profile_container .profile_image_wrapper {
+    width : 9.5em;
+    height : 100%;
+ㅛ
+    margin-right : 1.7vw;
+
+    overflow : hidden;
+}
+
+
+.user_profile_container .profile_image_wrapper .profile_image {
+    width : 120px;
+    height : 120px;
+    border-radius: 70%;
+    overflow: hidden;
+
+}
+
+@media screen and (max-width : 600px) {
+    .user_profile_container .profile_image_wrapper .profile_image {
+        width : 95px;
+        height : 95px;
+
+    }
+}
+
+@media screen and (min-width : 600px) and (max-width : 850px) {
+    .user_profile_container .profile_image_wrapper .profile_image {
+        width : 105px;
+        height : 105px;
+
+    }
+}
+
+.profile_image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user_profile_container .user_information_container {
+    flex : 1;
+    display : flex;
+    flex-direction : column;
+    font-weight : 600;
+
+
+}
+
+.profile_wrapper .profile_image_container .user-profile-upload-button ,
+.profile-wrapper .background-image-container .user-background-image-upload-button{
+    position: absolute;
+    font-size: 50px;
+    background: transparent;
+    border: none;
+    color: rgb(0, 0, 0, 0.6);
+    display: none;
+
+}
+
+
+.activity_list > ul {
+    display : flex;
+    padding-left : 0;
+}
+
+.list_item {
+    margin-right : 1rem;
+    font-weight : 600;
+}
+
+.list_item .activity_name {
+    margin-bottom : 0.2rem;
+
+}
+
+.list_item .count {
+    font-size : 20px;
+}
+
+.user_detail {
+    margin-bottom : 35px;
+}
+
+.user_detail .user_nickname {
+    margin-bottom : 0;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.user_information_container {
+    color : #ffffff;
+}
+
+.user_profile_image_button {
+    width: 100%;
+    height: 100%;
+    border-radius: 70%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: rgba(0,0,0);
+    position : relative;
+}
+
+
+
+.user_profile_image_button > .user_profile_image ,
+.user_profile_image_button .hover_image{
+    width : 100%;
+    height : 100%;
+    border-radius : 70%;
+}
+
+.hover_image {
+    opacity : 0;
+    position : absolute;
+    top : 0;
+    bottom : 0;
+    right : 0;
+    left : 0;
+}
+
+
+
+.user_country {
+    font-size : 12px;
+}
+
+.user_country i {
+    margin-right : 4px;
+}
+
+
+
+.activity_name {
+    font-size : 12px;
+}
+
+/*
+ * user profile & background image crop css
+*/
+
+/* cropper box circle 로 만들기 위해 기존 cropper.js css class 오버라이딩  */
+.cropper-crop-box , .cropper-view-box {
+    border-radius : 50%;
+}
+
+.cropper-view-box {
+    box-shadow: 0 0 0 1px #39f;
+    outline: 0;
+}

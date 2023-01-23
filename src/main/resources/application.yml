@@ -1,0 +1,69 @@
+server: # default port 설정 (localhost:8000/ .....)
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+
+  mvc:
+    static-path-pattern=/static/**
+
+  # spring static file path
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false # 개발 시 새로고침하면 적용됨
+
+  #  mysql 연결
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pcProjectDB?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    hikari:
+      maximum-pool-size: 20
+
+
+  jpa:
+    generate-ddl: true
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # entity 만들때 변수명 그대로 테이블 생성
+      use-new-id-generator-mappings: false # jpa의 numberingddf  전략을 사용하지 않음
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+  # 스프링 정적 파일 변동 자동 적용 세팅
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true # p6spy 프록시 중 많은 자원을 소모 하므로 운영 시 false로 변경 필요함
+
+
+# 이미지 파일 등록 경로 지정
+custom:
+  path:
+    upload-images: 'C://Users//jjack//projectimage'
+    absolute-user-image-path: 'C://Users//jjack//projectimage'

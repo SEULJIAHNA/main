@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block  th:replace="pc/fragments/header :: html-head"></th:block>
+</head>
+<body>
+    <th:block th:fragments = "imageCropAndUploadModal">
+        <div class="modal fade" id="imageUploadModal" tabindex="-1" role="dialog" aria-labelledby="imageUploadModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageUploadModalLabel">Upload a new profile picture</h5><button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body"><input id="filePhoto" type="file" name="filePhoto" />
+                        <div class="imagePreviewContainer"><img id="imagePreview" /></div>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" id="imageUploadButton" type="button" disabled="disabled">Upload</button></div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+</html>

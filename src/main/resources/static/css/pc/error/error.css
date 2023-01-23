@@ -1,0 +1,16 @@
+body {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-code {
+    font-size: 2rem;
+    font-weight : bold;
+}
+
+.error-title {
+    margin-top : 30px;
+    font-size : 0.7rem;
+    font-weight : bold;
+}

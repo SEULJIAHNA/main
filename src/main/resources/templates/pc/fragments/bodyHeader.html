@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment = "header" >
+<header id = "global_navbar">
+    <div class = "container gnv-wrapper">
+        <div class = "main-wrapper row mb-15">
+            <div class = "main-logo-container display_center col-2 col-sm-3">
+                <a href="/" class = "main-logo">
+                    <img src = "/images/main-logo-image.png">
+                </a>
+                <a href="/" class="header-symbol-link outer_logo_text">share your passion!</a>
+            </div>
+
+            <div class = "searchBox col-8 col-sm-6">
+                <form id = "search-form" action="#">
+                <span class = "search-icon">
+                    <button id = "search-btn" type="submit" title = "search">
+                        <i class="fa-solid fa-magnifying-glass magnifying-glass-icon"></i>
+                    </button>
+                </span>
+                    <label for="search-keyword"></label>
+                    <input id= "search-keyword" name = "keyword" type="search">
+
+                </form>
+            </div>
+            <div class = "login-join-button-container col-3">
+                <div class = "login-join-button lcCen">
+
+                    <div class = "before-login-button" sec:authorize = "isAnonymous()">
+                        <a href="/login">로그인/</a>
+                        <a href="/new">가입</a>
+                    </div>
+
+                    <div class = "after-login-button" sec:authorize ="isAuthenticated()" >
+                        <a href="/logout">로그아웃</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- screen width 600px 이하일 때 로그인 / 가입 버튼 자리에 메뉴 토글 버튼 레이아웃  -->
+            <div class = "navbar__toggleBtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class = "menu-wrapper categories" >
+            <nav class = "nav-bar">
+                <div id = "horizontal-underline"></div>
+                <ul class = "navbar__menu">
+                    <!-- screen layout width 가 600px 이하일 때 로그인 로그 아웃 button nav menu로 편성 -->
+                    <li sec:authorize = "isAnonymous()"class = "navbar_item visible_from_600px">
+                        <a th:href="@{/login}">로그인</a>
+                    </li>
+
+                    <li sec:authorize = "isAnonymous()" class = "navbar_item visible_from_600px">
+                        <a th:href="@{/new}">가입</a>
+                    </li>
+                    <li class = "navbar_item"><a href="#">룩북</a></li>
+                    <li class = "navbar_item"><a href="/boards">게시판</a></li>
+                    <li class = "navbar_item"><a href="#">채팅</a></li>
+                    <li class = "navbar_item">
+                        <a th:href= "@{'/users/' + ${#authentication.principal.nickname}}" sec:authorize = "isAuthenticated()">내 정보</a>
+                    </li >
+
+                    <li class = "navbar_item" sec:authorize = "hasRole('ROLE_ADMIN')">
+                        <a href="/admin">관리창</a>  <!-- this content is only shown to administrator -->
+                    </li>
+                    <li  sec:authorize = "isAuthenticated()" class =" navbar_item  visible_from_600px">
+                        <a href="/logout">로그아웃</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class = "global-navbar-bottom-line"></div>
+</header>
+</th:block>
+</html>
