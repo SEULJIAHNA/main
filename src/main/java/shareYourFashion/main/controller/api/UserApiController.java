@@ -98,7 +98,19 @@ public class UserApiController {
         return new ResponseEntity<Void>(headers , HttpStatus.OK);
     }
 
+    @PostMapping("/new2")
+    public ResponseEntity<?> save2(@RequestBody @Validated UserFormDTO userDto , Errors errors , Model model , UriComponentsBuilder b) throws Exception {
+        System.out.println("UserController: save 호출됨");
 
+        HttpHeaders headers = new HttpHeaders();
+        UriComponents uriComponents;
+
+
+        /*회원가입 성공시 login 페이지로 리다이렉트*/
+        uriComponents = b.path("/login").build();
+        headers.setLocation(uriComponents.toUri());
+        return new ResponseEntity<Void>(headers , HttpStatus.OK);
+    }
 
 
 }

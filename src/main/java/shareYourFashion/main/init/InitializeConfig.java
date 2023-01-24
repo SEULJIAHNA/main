@@ -69,7 +69,8 @@ public class InitializeConfig {
                 .profileImage(user_profileImage)
                 .build();
 
-        userRepository.saveAll(Arrays.asList(admin, user));
+        if(!userRepository.existsByEmail(user.getEmail()))
+            userRepository.saveAll(Arrays.asList(admin, user));
 
         backgroundProfileImageRepository.saveAll(Arrays.asList(admin_bgProfileImage , user_bgProfileImage));
         profileImageRepository.saveAll(Arrays.asList(user_profileImage , admin_profileImage));

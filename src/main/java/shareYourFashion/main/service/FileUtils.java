@@ -34,7 +34,7 @@ public class FileUtils {
 
 
     @Value("${custom.path.absolute-user-image-path}")
-    private static String EXTERNAL_IMAGE_PATH = "C://Users//jjack//projectimage";
+    private static String EXTERNAL_IMAGE_PATH = "C://seul//projectimage";
 
     private final static String IMAGE_ABSOLUTE_PATH; // 파일이 저장될 절대 경로
 

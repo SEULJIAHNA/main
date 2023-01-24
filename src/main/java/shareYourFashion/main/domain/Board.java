@@ -11,6 +11,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Board extends BaseTimeEntity {
 
     @Column(name = "board_id")
@@ -48,7 +49,6 @@ public class Board extends BaseTimeEntity {
     private Thumbnail thumbnail;
 
     // == ENTity constructor == //
-    public Board() {};
 
     //== 연관관계 메소드 ==//
     public void setUser(User user){
