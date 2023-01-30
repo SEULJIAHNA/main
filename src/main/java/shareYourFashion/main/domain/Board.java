@@ -27,7 +27,7 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false , length = 100)
     private String title; // title
 
-    @NonNull
+//    @NonNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User author;
@@ -50,6 +50,20 @@ public class Board extends BaseTimeEntity {
 
     // == ENTity constructor == //
 
+    //==게시글 수정 메소드==//
+    public void update( String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    //==조회수 업데이트 메소드==//
+    public void updateView(int view){
+        this.view = view;
+    }
+
+    //==삭제 메소드==//
+    public void deleteById(Long id) {this.id = id;}
+
     //== 연관관계 메소드 ==//
     public void setUser(User user){
         this.author = user;
@@ -57,5 +71,6 @@ public class Board extends BaseTimeEntity {
     }
 
 
+    //작성일, 수정일 추가?
 
 }
