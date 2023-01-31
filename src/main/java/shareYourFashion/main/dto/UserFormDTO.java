@@ -2,6 +2,7 @@ package shareYourFashion.main.dto;
 
 import lombok.*;
 import shareYourFashion.main.constant.Roles;
+import shareYourFashion.main.domain.User;
 import shareYourFashion.main.domain.valueTypeClass.Address;
 import shareYourFashion.main.constant.JoinPath;
 import shareYourFashion.main.constant.Sex;
@@ -44,6 +45,9 @@ public class UserFormDTO {
     private Roles user_role = Roles.USER ;
 
     private JoinPath joinPath = JoinPath.DEFAULT_ACCOUNT;
+
+    public UserFormDTO(User writer) {
+    }
 
 
     @Override

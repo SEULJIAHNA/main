@@ -1,31 +1,61 @@
 package shareYourFashion.main.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import shareYourFashion.main.domain.Board;
-import shareYourFashion.main.dto.BoardRequestDTO;
-import shareYourFashion.main.dto.BoardResponseDTO;
-import shareYourFashion.main.dto.BoardSaveRequestDTO;
-import shareYourFashion.main.dto.BoardUpdateDTO;
+import shareYourFashion.main.domain.Comment;
+import shareYourFashion.main.dto.CommentSaveDTO;
+import shareYourFashion.main.exception.domainException.*;
 import shareYourFashion.main.repository.BoardRepository;
 import shareYourFashion.main.repository.CommentRepository;
+import shareYourFashion.main.repository.UserRepository;
+import shareYourFashion.main.config.auth.SecurityUtil;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class CommentService {
 
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
+    private final UserRepository userRepository; //User랑 상의
+    private final BoardRepository boardRepository;
 
+    public void save(Long boardId, CommentSaveDTO commentSaveDTO){
+        Comment comment = commentSaveDTO.toEntity();
+//        comment.confirmWriter(UserRepository.findByUserName(SecurityUtil.getLoginUsername()).orElseThrow(()-> new UserException(UserExceptionType.NOT_FOUND_MEMBER)));//User랑 상의
+        comment.confirmBoard(boardRepository.findById(boardId).orElseThrow(()->new BoardException(BoardExceptionType.POST_NOT_POUND)));
+        commentRepository.save(comment);
 
+    }
 
+    public void saveReComment(Long postId, Long parentId, CommentSaveDTO commentSaveDto) {
+        Comment comment = commentSaveDto.toEntity();
+        //User랑 상의
+        comment.confirmWriter(userRepository.findByNickname(SecurityUtil.getLoginUsername()).orElseThrow(() -> new UserException(UserExceptionType.NOT_FOUND_MEMBER)));
+
+        comment.confirmBoard(boardRepository.findById(postId).orElseThrow(() -> new BoardException(BoardExceptionType.POST_NOT_POUND)));
+
+        comment.confirmParent(commentRepository.findById(parentId).orElseThrow(() -> new CommentException(CommentExceptionType.NOT_POUND_COMMENT)));
+
+        commentRepository.save(comment);
+
+    }
+
+    public void remove(Long id) throws CommentException {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new CommentException(CommentExceptionType.NOT_POUND_COMMENT));
+
+        if(!comment.getWriter().getNickname().equals(SecurityUtil.getLoginUsername())){
+            throw new CommentException(CommentExceptionType.NOT_AUTHORITY_DELETE_COMMENT);
+        }
+
+        comment.remove();
+        List<Comment> removableCommentList = comment.findRemovableList();
+        commentRepository.deleteAll(removableCommentList);
+    }
 }
+
+
+
+

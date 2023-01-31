@@ -6,7 +6,7 @@ plugins {
 
 group = 'shareYourFashion'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = "16"
 
 configurations {
 	compileOnly {
@@ -80,10 +80,11 @@ compileJava.dependsOn copyFrontLib
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 
-response.setContentType("application/json;charset=UTF-8");
-response.getWriter().println(
-		new ObjectMapper().writeValueAsString(
-				ResponseDto.fail("BAD_REQUEST", "로그인이 필요합니다.")
-		)
-);
-response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401,402 같은 에러코드를 담음
+//response.setContentType("application/json;charset=UTF-8");
+//response.getWriter().println(
+//		new ObjectMapper().writeValueAsString(
+//				ResponseDto.fail("BAD_REQUEST", "로그인이 필요합니다.")
+//		)
+//);
+//response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401,402 같은 에러코드를 담음
+targetCompatibility = JavaVersion.VERSION_16

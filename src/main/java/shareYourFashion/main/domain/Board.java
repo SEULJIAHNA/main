@@ -70,6 +70,11 @@ public class Board extends BaseTimeEntity {
         user.getBoards().add(this);
     }
 
+    public void addComment(Comment comment){
+        //comment의 Post 설정은 comment에서 함
+        comments.add(comment);
+    }
+
 
     //작성일, 수정일 추가?
 

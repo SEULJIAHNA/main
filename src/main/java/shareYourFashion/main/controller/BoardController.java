@@ -62,7 +62,7 @@ public class BoardController {
         return BOARD_MAIN_HTML;
     }
 
-    @GetMapping(value = BOARD_FORM_URL)  // "/boards/form";
+    @GetMapping(value = BOARD_FORM_URL)  // "/boards/form"; 게시판 글 작성 폼
     public String boardForm(Model m, @RequestParam(required = false) Long id) {
         if (id == null) {
             m.addAttribute("board", new Board());
@@ -71,58 +71,32 @@ public class BoardController {
             m.addAttribute("board", board);
         }
 
-        return BOARD_FORM_HTML;
+        return BOARD_FORM_HTML; //"pc/board/boardPageForm"
     }
 
-    @PostMapping(value = BOARD_FORM_URL) //게시판 글 작성 폼
+    @PostMapping(value = BOARD_FORM_URL) // "/boards/form"; 게시판 글 작성 폼
     public String pastForm(@Valid Board board, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return BOARD_FORM_HTML;
+            return BOARD_FORM_HTML; //"pc/board/boardPageForm"
         }
         boardRepository.save(board);
-        return BOARD_CONTENT_VIEW_PAGE_URL;//바로 위 if 모델앤뷰와 걸리지 않는지 체크해야함
+        return BOARD_CONTENT_VIEW_PAGE_URL;//"/boards/view"; ?String 값인데 url로 반환해도 되는지? 그리고 ajax로 반환페이지 설정했는데 그건?
     }
 
     @GetMapping(value = BOARD_CONTENT_VIEW_PAGE_URL) //게시글 상세조회 "/boards/view";
     public String getBoardViewPage(Model m, BoardRequestDTO boardRequestDTO, HttpServletRequest request, HttpServletResponse response) throws Exception{
         try {
             if(boardRequestDTO.getId() != null){
-                    boardService.updateView(boardRequestDTO.getId(), request, response);
+                    boardService.updateView(boardRequestDTO.getId(), request, response); //조회수
                 m.addAttribute("board", boardService.findById(boardRequestDTO.getId()));
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
 
-        return BOARD_CONTENT_VIEW_PAGE_HTML;
+        return BOARD_CONTENT_VIEW_PAGE_HTML; //"pc/board/boardViewPage"
     }
-
-//    @GetMapping(value = BOARD_MAIN_URL)//조회수
-//    public String updateView(@PathVariable("id") Long id, Model m){
-//        Board board = boardRepository.findById(id).get();
-//        int view = board.getView() + 1;
-//
-//        BoardRequestDTO boardRequestDTO = BoardRequestDTO.builder()
-//                .view(view)
-//                .build();
-//
-//        boardService.updateView(board.getId(), boardRequestDTO);
-//
-//        m.addAttribute(board);
-//        return BOARD_CONTENT_VIEW_PAGE_HTML;
-//    }
-
-
-//    @PostMapping(value = BOARD_DELETE_PAGE_URL)
-//    public String boardDeletePage(Model m, @RequestParam() Long id, Criteria cri, RedirectAttributes re) throws Exception{
-//        try {
-//            boardService.deleteById(id);
-//        } catch (Exception e) {
-//            throw new Exception(e.getMessage());
-//        }
-//        return BOARD_MAIN_HTML;
-//    }
-    @PostMapping(value = BOARD_DELETE_ALL_URL)
+    @PostMapping(value = BOARD_DELETE_ALL_URL) //존재의 이유??
     public String boardDeleteALL(Model m, @RequestParam() Long[] deleteId) throws Exception{
         try {
             boardService.deleteAll(deleteId);

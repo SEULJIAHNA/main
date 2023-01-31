@@ -77,6 +77,9 @@ public class User extends BaseTimeEntity{
     @OneToMany(mappedBy = "writer" ,cascade = CascadeType.ALL , orphanRemoval = true)
     private List<LookBook> lookBooks = new   ArrayList<>();
 
+    @OneToMany(mappedBy = "writer" ,cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
     //== 연관관계 메소드 ==//
     public User hashPassword(PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(this.password);
@@ -107,6 +110,10 @@ public class User extends BaseTimeEntity{
         backgroundProfileImage.setUser(this);
     }
 
+    public void addComment(Comment comment){
+        //comment의 writer 설정은 comment에서 함
+        comments.add(comment);
+    }
 
     @Override
     public String toString() {
